@@ -47,7 +47,7 @@ def get_data():
 st.markdown("This app is restricted to the members of the team. Type the password in order to use it.")
 pw = st.text_input("Password")
 
-if pw != "sus amogus":
+if pw != st.secrets["PASSWORD"]:
     st.stop()
 
 
