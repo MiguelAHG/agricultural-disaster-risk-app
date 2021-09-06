@@ -29,7 +29,7 @@ Migs Germar
 
 ## Members
 
-Lorenzo Layug, Fiona Jao, Uriel Dolorfino, and Chico Atanacio
+Lorenzo Layug, Fiona Jao, and Uriel Dolorfino
 
 - Data inspection and cleaning
 

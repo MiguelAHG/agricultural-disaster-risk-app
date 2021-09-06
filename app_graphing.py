@@ -61,7 +61,12 @@ Also, note that some variable names may have (dot) or (bracket) in them. This me
             var_list.append(y_label)
     else:
         y_label = "count()"
-        y_encoding = alt.Undefined
+        y_encoding = "quantitative"
+
+    # Check first if x label and y label are the same
+    if x_label == y_label:
+        st.markdown("---\n\n**Warning**: The two variables are the same. Please select two different variables before proceeding.")
+        return
 
     st.markdown("## Results")
 

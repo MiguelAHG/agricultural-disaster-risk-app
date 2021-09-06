@@ -54,6 +54,8 @@ def map_feature(mi_df, flat_df, topo_data):
             scale = alt.Scale(scheme = "blueorange"),
         )
 
+        selection_exists = True
+
         if map_dtype == "number":
 
             view = st.radio(
@@ -65,7 +67,7 @@ def map_feature(mi_df, flat_df, topo_data):
                 st.markdown("'See All Barangays' colors all barangays where there is data.\n\n'Highlight Barangays' provides a slider to highlight specific barangays based on variable value.")
 
             if view == "See All Barangays":
-                selection = np.nan
+                selection_exists = False
                 color_special = color_basic
 
             elif view == "Highlight Barangays":
@@ -137,8 +139,6 @@ def map_feature(mi_df, flat_df, topo_data):
                 from_ = alt.LookupData(flat_df, "(Barangay)", [map_var]),
             )
         )
-
-        selection_exists = pd.notnull([selection]).any()
 
         if selection_exists:
             choro = choro.add_selection(selection)

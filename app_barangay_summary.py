@@ -1,7 +1,8 @@
 import pandas as pd
+import geopandas as gpd
 import numpy as np
 import streamlit as st
-
+import altair as alt
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -9,23 +10,36 @@ import seaborn as sns
 from matplotlib.backends.backend_agg import RendererAgg
 from io import BytesIO
 
+@st.cache(suppress_st_warning = True, allow_output_mutation = True)
+def make_hierarchical(flat_df, mi_df):
+    """Recreate the original hierarchical DataFrame."""
+
+    orig_df = flat_df.copy().set_index("Index/Barangay")
+    orig_df.columns = pd.MultiIndex.from_frame(mi_df)
+
+    return orig_df
+
 def barangay_summary_feature(mi_df, flat_df):
     """Barangay Data Summary feature."""
 
+    # Make a hierarchically labeled DataFrame again.
+    orig_df = make_hierarchical(flat_df, mi_df)
+
     st.title("Barangay Data Summaries")
     st.markdown("""This feature lets you select one barangay and get a summary of the most important data on agricultural disaster risk. Select a barangay from the options, or search for one by typing inside the box.""")
+    st.caption("Only barangays where data is available can be selected.")
+
+    # This only contains the barangays in the Sparta open data,
+    # and not the ones from GADM.
+    open_data_barangays = flat_df["(Barangay)"].tolist()
 
     # Let the user select a barangay.
     barangay = st.selectbox(
         label = "Select barangay",
-        options = flat_df["(Barangay)"],
+        options = open_data_barangays,
     )
 
-    # Make a hierarchically labeled DataFrame again.
-    orig_df = flat_df.copy().set_index("Index/Barangay")
-    orig_df.columns = pd.MultiIndex.from_frame(mi_df)
-
-    # Geological areas affectd by hazards
+    # Geological areas affected by hazards
     geo_areas_list = list(
         orig_df
         .loc[
@@ -171,27 +185,24 @@ def barangay_summary_feature(mi_df, flat_df):
         fig.savefig(chart, format = "png")
         st.image(chart)
 
-
-    # Let the user select element-hazard combination.
-    with st.sidebar:
-        st.markdown("## Agricultural Element and Hazard")
-
-        element_select = st.selectbox(
-            label = "Element",
-            options = elements.unique(),
-        )
-
-        hazard_select = st.selectbox(
-            label = "Hazard",
-            options = eh_combos.loc[
-                eh_combos["Element"] == element_select,
-                "Hazard"
-            ]
-        )
-
     st.markdown("---")
-    st.markdown("Select an element and hazard in the sidebar to the left for more details.")
-    st.markdown("# {}: {}".format(element_select, hazard_select))
+    st.markdown("# Agricultural Element and Hazard")
+    st.markdown("Select an element and hazard for more details about how these affect the barangay.")
+
+    element_select = st.selectbox(
+        label = "Element",
+        options = elements.unique(),
+    )
+
+    hazard_select = st.selectbox(
+        label = "Hazard",
+        options = eh_combos.loc[
+            eh_combos["Element"] == element_select,
+            "Hazard"
+        ]
+    )
+
+    st.markdown("## Risk of {} Against {}".format(element_select, hazard_select))
 
     # List of key categories
     cat_list = [
@@ -223,7 +234,7 @@ def barangay_summary_feature(mi_df, flat_df):
 
     key_categories = key_categories.loc[cat_list] # Reorder by label
 
-    st.markdown("## Key Categories")
+    st.markdown("### Key Categories")
     st.dataframe(key_categories)
 
     # From here, we prepare to get the key scores.
@@ -321,7 +332,7 @@ def barangay_summary_feature(mi_df, flat_df):
     key_score_df = key_score_df.loc[all_score_labels]
 
     # Display message and df of scores and percentiles.
-    st.markdown("""## Key Scores""")
+    st.markdown("""### Key Scores""")
    
     st.dataframe(key_score_df)
 
@@ -353,41 +364,55 @@ Percentiles are given in comparison to other barangays with the same element and
                 with grid_columns[col_num]:
                     score_value = row["Score"]
                     perc = "{}%".format(row["Percentile"])
-                    if not isinstance(score_value, str):
-                        score_value = round(score_value, 2)
 
-                    st.markdown("{}: {}".format(score_name, score_value))
+                    if score_value == "Unknown":
+                        score_display = "Unknown"
+                    else:
+                        score_display = round(score_value, 2)
+                    
+
+                    st.markdown("{}: {}".format(score_name, score_display))
                     st.metric("Percentile", perc)
 
-                    _lock = RendererAgg.lock
-                    with _lock:
-                        # Histogram with red line.
+                    if score_value != "Unknown":
 
-                        fig = plt.figure(figsize = (4.5, 3.5))
-
-                        ax = sns.histplot(
-                            key_score_cols,
-                            x = score_name,
-                            bins = 10,
-                            fill = False,
+                        # Histogram layer
+                        hist = (
+                            alt.Chart(key_score_cols)
+                            .mark_bar()
+                            .encode(
+                                x = alt.X(
+                                    score_name,
+                                    type = "quantitative",
+                                    title = score_name,
+                                    bin = True,
+                                ),
+                                y = alt.Y(
+                                    "count()",
+                                    title = "Count",
+                                ),
+                            )
                         )
 
-                        # Red line indicating the barangay's score.
-                        ax.axvline(x = score_value, color = "red")
+                        # Red line layer
+                        line = (
+                            alt.Chart(key_score_cols)
+                            .mark_rule(
+                                color = "red",
+                                size = 5,
+                            )
+                            .encode(
+                                x = alt.X(score_name),
+                            )
+                            .transform_filter(
+                                alt.datum[score_name] == score_value
+                            )
+                        )
 
-                        # Make ticks invisible but keep tick labels
-                        ax.tick_params(axis = "both", which = "both", length = 0)
+                        # Combined layers
+                        chart = (
+                            (hist + line)
+                            .properties(height = 200)
+                        )
 
-                        # Make some spines invisible
-                        for location in ["top", "right"]:
-                            ax.spines[location].set_visible(False)
-
-                        ax.set_xlabel(score_name, size = 12)
-                        ax.set_ylabel("Count", size = 12)
-
-                        # Store the graph as an image, then display the image in streamlit.
-                        # This makes the display size consistent.
-                        # If the figure is used, the chart will have a different size depending on the height-width proportion.
-                        chart = BytesIO()
-                        fig.savefig(chart, format = "png")
-                        st.image(chart)
+                        st.altair_chart(chart, use_container_width = True)
