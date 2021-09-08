@@ -23,130 +23,132 @@ def map_feature(mi_df, flat_df, topo_data):
 
     st.markdown("## Map")
 
-    # Base layer.
-    # Use if the chosen variable is the barangay.
-    base = (
-        alt.Chart(topo_data)
-        .mark_geoshape(
-            stroke = "black"
-        )
-        .properties(
-            height = 500,
-        )
-    )
+    with st.expander("View Map", expanded = True):
 
-    map = base.encode(
-        tooltip = [
-            alt.Tooltip(
-                shorthand = "properties.NAME_3",
-                title = "Barangay",
-                type = "nominal",
-            ),
-        ]
-    )
-
-    # Choropleth layer
-    if map_var != "(Barangay)":
-        
-        color_basic = alt.Color(
-            map_var,
-            type = map_encoding,
-            scale = alt.Scale(scheme = "blueorange"),
+        # Base layer.
+        # Use if the chosen variable is the barangay.
+        base = (
+            alt.Chart(topo_data)
+            .mark_geoshape(
+                stroke = "black"
+            )
+            .properties(
+                height = 500,
+            )
         )
 
-        selection_exists = True
+        map = base.encode(
+            tooltip = [
+                alt.Tooltip(
+                    shorthand = "properties.NAME_3",
+                    title = "Barangay",
+                    type = "nominal",
+                ),
+            ]
+        )
 
-        if map_dtype == "number":
-
-            view = st.radio(
-                label = "Map View",
-                options = ["See All Barangays", "Highlight Barangays"],
+        # Choropleth layer
+        if map_var != "(Barangay)":
+            
+            color_basic = alt.Color(
+                map_var,
+                type = map_encoding,
+                scale = alt.Scale(scheme = "blueorange"),
             )
 
-            with st.expander("Help", expanded = False):
-                st.markdown("'See All Barangays' colors all barangays where there is data.\n\n'Highlight Barangays' provides a slider to highlight specific barangays based on variable value.")
+            selection_exists = True
 
-            if view == "See All Barangays":
-                selection_exists = False
-                color_special = color_basic
+            if map_dtype == "number":
 
-            elif view == "Highlight Barangays":
-
-                # Slider selection for numerical variables
-
-                data_col = flat_df[map_var].dropna()
-
-                min_value = min(data_col)
-                max_value = max(data_col)
-                step_value = (max_value - min_value) * 0.01
-                close_value = (max_value - min_value) * 0.10
-
-                slider = alt.binding_range(
-                    min = min_value,
-                    max = max_value,
-                    step = step_value,
-                    name = "Select values near:"
+                view = st.radio(
+                    label = "Map View",
+                    options = ["See All Barangays", "Highlight Barangays"],
                 )
 
-                selection = alt.selection_single(
-                    name = "SliderSelector",
-                    fields = ["select_near"],
-                    bind = slider,
-                )
+                if st.checkbox("Help", value = False):
+                    st.markdown("'See All Barangays' colors all barangays where there is data.\n\n'Highlight Barangays' provides a slider to highlight specific barangays based on variable value.")
+
+                if view == "See All Barangays":
+                    selection_exists = False
+                    color_special = color_basic
+
+                elif view == "Highlight Barangays":
+
+                    # Slider selection for numerical variables
+
+                    data_col = flat_df[map_var].dropna()
+
+                    min_value = min(data_col)
+                    max_value = max(data_col)
+                    step_value = (max_value - min_value) * 0.01
+                    close_value = (max_value - min_value) * 0.10
+
+                    slider = alt.binding_range(
+                        min = min_value,
+                        max = max_value,
+                        step = step_value,
+                        name = "Select values near:"
+                    )
+
+                    selection = alt.selection_single(
+                        name = "SliderSelector",
+                        fields = ["select_near"],
+                        bind = slider,
+                    )
+
+                    color_special = alt.condition(
+                        # This expression returns True if the real values are close to the selected value.
+                        # "Close" means within 10% of the total range of values.
+                        predicate = np.abs(alt.datum[map_var] - selection["select_near"]) <= close_value,
+                        if_true = color_basic,
+                        if_false = alt.value("white"),
+                    )
+
+            elif map_dtype == "text":
+
+                # Standard multi-select for text variables.
+
+                if st.checkbox("Help", value = False):
+                    st.markdown("Click on a barangay in order to highlight all barangays that share the same category.\n\nTo return the map to its original state, click on an empty space near the edge of the map.")
+
+                selection = alt.selection_multi(fields = [map_var])
 
                 color_special = alt.condition(
-                    # This expression returns True if the real values are close to the selected value.
-                    # "Close" means within 10% of the total range of values.
-                    predicate = np.abs(alt.datum[map_var] - selection["select_near"]) <= close_value,
-                    if_true = color_basic,
-                    if_false = alt.value("white"),
+                    selection,
+                    color_basic,
+                    alt.value("white"),
                 )
 
-        elif map_dtype == "text":
-
-            # Standard multi-select for text variables.
-
-            with st.expander("Help", expanded = False):
-                st.markdown("Click on a barangay in order to highlight all barangays that share the same category.\n\nTo return the map to its original state, click on an empty space near the edge of the map.")
-
-            selection = alt.selection_multi(fields = [map_var])
-
-            color_special = alt.condition(
-                selection,
-                color_basic,
-                alt.value("white"),
+            choro = (
+                base
+                .encode(
+                    tooltip = [
+                        alt.Tooltip(
+                            shorthand = "properties.NAME_3",
+                            type = "nominal",
+                            title = "Barangay",
+                        ),
+                        alt.Tooltip(
+                            shorthand = map_var,
+                            type = map_encoding,
+                            title = map_detail,
+                        )
+                    ],
+                    color = color_special,
+                )
+                .transform_lookup(
+                    lookup = "properties.NAME_3",
+                    from_ = alt.LookupData(flat_df, "(Barangay)", [map_var]),
+                )
             )
 
-        choro = (
-            base
-            .encode(
-                tooltip = [
-                    alt.Tooltip(
-                        shorthand = "properties.NAME_3",
-                        type = "nominal",
-                        title = "Barangay",
-                    ),
-                    alt.Tooltip(
-                        shorthand = map_var,
-                        type = map_encoding,
-                        title = map_detail,
-                    )
-                ],
-                color = color_special,
-            )
-            .transform_lookup(
-                lookup = "properties.NAME_3",
-                from_ = alt.LookupData(flat_df, "(Barangay)", [map_var]),
-            )
-        )
+            if selection_exists:
+                choro = choro.add_selection(selection)
 
-        if selection_exists:
-            choro = choro.add_selection(selection)
+            map = base + choro
 
-        map = base + choro
-
-    # Display map
-    st.altair_chart(map, use_container_width = True)
+        # Display map
+        st.altair_chart(map, use_container_width = True)
 
     # Open data maps
     st.markdown("## Open Data Maps\n\nThese are more detailed maps about specific hazards in Butuan City.")

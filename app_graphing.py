@@ -148,11 +148,8 @@ Also, note that some variable names may have (dot) or (bracket) in them. This me
         elif mark_type == "Point":
             chart = chart.mark_point()
 
-        # Unique axis title for barangay variable
-        if x_label.startswith("(Barangay)"):
-            x_title = "(Barangay)"
-        else:
-            x_title = x_label
+        # Use Detail level as title.
+        x_title = x_label.split("/")[-1]
 
         chart = chart.encode(
             x = alt.X(
@@ -165,10 +162,14 @@ Also, note that some variable names may have (dot) or (bracket) in them. This me
 
         if not (mark_type == "Boxplot" and num_vars == 1):
             
+            # Use Detail level as title.
+            y_title = y_label.split("/")[-1]
+
             chart = chart.encode(
                 y = alt.Y(
                     shorthand = y_label,
                     type = y_encoding,
+                    title = y_title,
                 ),
             )
 

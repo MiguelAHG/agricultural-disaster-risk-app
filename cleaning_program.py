@@ -425,7 +425,7 @@ if __name__ == "__main__":
     tpg = topology.Topology()
     topojson = tpg({"barangay_geodata": geo_dct})
 
-    f = open("barangay_topojson.json", "w")
+    f = open("./geodata/barangay_topojson.json", "w")
     json.dump(topojson, f, indent = 4)
     f.close()
 
