@@ -21,8 +21,8 @@ from app_home import home_feature
 def get_data():
     mi_df = pd.read_csv("./cleaning_outputs/multiindex_frame.csv")
     flat_df = pd.read_csv("./cleaning_outputs/flat_label_data.csv")
-
-    my_url = "https://raw.githubusercontent.com/MiguelAHG/agricultural-disaster-risk-app/main/barangay_topojson.json"
+    
+    my_url = "https://raw.githubusercontent.com/MiguelAHG/agricultural-disaster-risk-app/main/geodata/barangay_topojson.json"
 
     topo_data = alt.topo_feature(
         url = my_url,
