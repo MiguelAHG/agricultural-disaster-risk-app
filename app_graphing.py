@@ -160,7 +160,15 @@ Also, note that some variable names may have (dot) or (bracket) in them. This me
             ),
         )
 
-        tooltip_list = [alt.Tooltip(x_label, type = x_encoding, title = x_title)]
+        tooltip_list = []
+        if "(Barangay)" not in var_list:
+            tooltip_list.append(
+                alt.Tooltip("(Barangay)", type = "nominal")
+            )
+
+        tooltip_list.append(
+            alt.Tooltip(x_label, type = x_encoding, title = x_title)
+        )
 
         if not (mark_type == "Boxplot" and num_vars == 1):
             
@@ -175,7 +183,9 @@ Also, note that some variable names may have (dot) or (bracket) in them. This me
                 ),
             )
 
-            tooltip_list.append(alt.Tooltip(y_label, type = y_encoding, title = y_title))
+            tooltip_list.append(
+                alt.Tooltip(y_label, type = y_encoding, title = y_title)
+            )
 
         chart = (
             chart
