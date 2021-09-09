@@ -118,11 +118,12 @@ Also, note that some variable names may have (dot) or (bracket) in them. This me
             st.error("Error: You have selected a boxplot. At least one variable must have Numerical data type and Quantitative encoding.")
             st.stop()
 
-        # Drop rows with nulls
-        if "(Barangay)" not in var_list:
-            var_list = ["(Barangay)"] + var_list
+        subset = var_list.copy()
         
-        flat_df_subset = flat_df[var_list].dropna()
+        if "(Barangay)" not in subset:
+            subset.append("(Barangay)")
+        
+        flat_df_subset = flat_df[subset].dropna() # Drop rows with nulls
 
         # Make the chart object
         chart = alt.Chart(flat_df_subset)
@@ -163,6 +164,7 @@ Also, note that some variable names may have (dot) or (bracket) in them. This me
             ),
         )
 
+        # List of variables to show in the tooltip
         tooltip_list = []
         if "(Barangay)" not in var_list:
             tooltip_list.append(
