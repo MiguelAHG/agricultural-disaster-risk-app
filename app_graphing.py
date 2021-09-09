@@ -160,6 +160,8 @@ Also, note that some variable names may have (dot) or (bracket) in them. This me
             ),
         )
 
+        tooltip_list = [alt.Tooltip(x_label, type = x_encoding, title = x_title)]
+
         if not (mark_type == "Boxplot" and num_vars == 1):
             
             # Use Detail level as title.
@@ -173,9 +175,18 @@ Also, note that some variable names may have (dot) or (bracket) in them. This me
                 ),
             )
 
-        chart = chart.properties(
-            title = "Chart Type: " + mark_type,
-            height = height_px,
-        ).interactive()
+            tooltip_list.append(alt.Tooltip(y_label, type = y_encoding, title = y_title))
+
+        chart = (
+            chart
+            .encode(
+                tooltip = tooltip_list
+            )
+            .properties(
+                title = "Chart Type: " + mark_type,
+                height = height_px,
+            )
+            .interactive()
+        )
 
         st.altair_chart(chart, use_container_width = True)
