@@ -119,10 +119,13 @@ Also, note that some variable names may have (dot) or (bracket) in them. This me
             st.stop()
 
         # Drop rows with nulls
-        flat_df = flat_df[var_list].dropna()
+        if "(Barangay)" not in var_list:
+            var_list = ["(Barangay)"] + var_list
+        
+        flat_df_subset = flat_df[var_list].dropna()
 
         # Make the chart object
-        chart = alt.Chart(flat_df)
+        chart = alt.Chart(flat_df_subset)
 
         # Whether to bin the x axis.
         bin_x = False
