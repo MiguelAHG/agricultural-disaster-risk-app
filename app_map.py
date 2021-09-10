@@ -50,10 +50,14 @@ def map_feature(mi_df, flat_df, topo_data):
         # Choropleth layer
         if map_var != "(Barangay)":
             
+            # Legend title only shows Detail level of hierarchy
+            legend_title = map_var.split("/")[-1]
+            
             color_basic = alt.Color(
                 map_var,
                 type = map_encoding,
                 scale = alt.Scale(scheme = "blueorange"),
+                legend = alt.Legend(title = legend_title)
             )
 
             selection_exists = True
