@@ -35,7 +35,7 @@ This project used open data obtained from the following websites:
 - Sparta Portal
   - Open data from the Sparta Portal were cleaned and uploaded to the `cleaning_inputs`, `cleaning_outputs`, and `open_data_maps` folders.
   - We have been instructed that the open data from the Sparta Portal only be "utilized solely for this competition and not for use outside of SPARTA hackathon." Thus, do not download the files in the mentioned folders.
-- Global Adminstrative Areas (GADM) Version 3.4
+- Global Administrative Areas (GADM) Version 3.4
   - Geospatial data on Butuan City were uploaded to `geodata/barangay_topojson.json`.
   - GADM's license states that its data may be used for non-commercial purposes.
 
