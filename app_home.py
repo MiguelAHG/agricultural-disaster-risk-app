@@ -43,7 +43,7 @@ This project used open data obtained from the following websites:
 
 - Sparta Portal
   - This is the source of the agricultural disaster risk data used throughout the app.
-- Global Adminstrative Areas (GADM) Version 3.4
+- Global Administrative Areas (GADM) Version 3.4
   - This is the source of the geospatial data used in the "Map of Butuan City" feature.
   - GADM's license states that its data may be used for non-commercial purposes.
 
