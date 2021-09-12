@@ -5,43 +5,62 @@ import streamlit as st
 from pandas.api.types import is_string_dtype
 from pandas.api.types import is_numeric_dtype
 
-def select_variable(mi_df, flat_df, var_name = "x"):
+def selection_feature(mi_df, flat_df, var_name = "x"):
 
     """Select a variable in the hierarchical system."""
-    st.markdown("#### {} Variable".format(var_name))
+    st.markdown("---\n\n#### {} Variable".format(var_name))
 
-    narrow_down = mi_df.copy()
-    selection_list = []
+    first_radio = st.radio(
+        "What would you like to select?",
+        options = [
+            "List of barangays",
+            "Other variable",
+        ],
+        key = f"{var_name} radio",
+    )
 
-    help_dict = {
-        "Sector": "Select the general sector or subsector that you would like to know about. Currently, only Agriculture data are available. You may also select (Barangay) in order to compare barangays.",
-        "Element": "Select an element which may be affected by hazards. For example, the elements under Agriculture are Crops, Fisheries, and Livestock.",
-        "Hazard": "Select a hazard which may harm the element. Currently, only natural hazards are available.",
-        "Disaster Risk Aspect": "Select one of the aspects used to determine disaster risk, such as exposure, sensitivity, etc.",
-        "Detail": "Select one of various specific pieces of information.",
-    }
+    if first_radio == "List of barangays":
+        selection_list = ["(Barangay)"]
 
-    for mi_level in narrow_down.columns:
-        
-        options = narrow_down[mi_level].unique()
+    else:
+        # Variable selection system for hierarchy of labels
 
-        selection = st.selectbox(
-            label = mi_level,
-            options = options,
-            help = help_dict[mi_level],
-            key = f"{var_name} {mi_level}", # Use a unique key so that the app can differentiate between selectboxes.
+        narrow_down = (
+            mi_df
+            .copy()
+            # Drop the row for (Barangay).
+            .loc[mi_df["Sector"] != "(Barangay)"]
         )
 
-        if selection == "(Barangay)" and mi_level == "Sector":
-            selection_list = ["(Barangay)", "None", "None", "None", "None"]
-            break
+        selection_list = []
 
-        narrow_down = narrow_down[
-            narrow_down[mi_level] == selection
-        ]
+        help_dict = {
+            "Sector": "Currently, only data on the Agriculture sector are available.",
+            "Element": "Select an element which may be affected by hazards. For example, the elements under Agriculture are Crops, Fisheries, and Livestock.",
+            "Hazard": "Select a hazard which may harm the element. Currently, only natural hazards are available.",
+            "Disaster Risk Aspect": "Select one of the aspects used to determine disaster risk, such as exposure, sensitivity, etc.",
+            "Detail": "Select a specific piece of information.",
+        }
 
-        selection_list.append(selection)
+        for mi_level in narrow_down.columns:
+            
+            options = narrow_down[mi_level].unique()
 
+            selection = st.selectbox(
+                label = mi_level,
+                options = options,
+                help = help_dict[mi_level],
+                key = f"{var_name} {mi_level}", # Use a unique key so that the app can differentiate between selectboxes.
+            )
+
+            narrow_down = narrow_down.loc[
+                narrow_down[mi_level] == selection,
+                :
+            ]
+
+            selection_list.append(selection)
+
+    # Determine final label
     if selection_list[0] == "(Barangay)":
         show_label = "(Barangay)"
         final_label = "(Barangay)"
@@ -86,5 +105,96 @@ def select_variable(mi_df, flat_df, var_name = "x"):
             key = f"{var_name} encoding",
         )
         encoding = encoding.lower()
-        
+
+    st.markdown("---")
     return final_label, data_type, encoding
+
+
+
+
+
+
+
+
+
+def selection_help_box():
+    """Display a box with advice on how to use the variable selection system."""
+
+    st.caption("If you need help with this, please read the 'Help: Variable Selection' page.")
+
+
+
+
+
+
+
+
+def selection_help_page(mi_df, flat_df):
+    """Display a page that explains how the variable selection system works."""
+
+    st.markdown("""# Help: Variable Selection
+
+This page will help you understand how to use the variable selection system in "Map of Butuan City" and "Graphing Tool".""")
+
+    st.markdown("""## Understanding the Dataset
+    
+The variables in the dataset have been grouped together to make it easier to navigate through them. This is a hierarchy with 5 levels.""")
+
+    st.image("./figures/hierarchy_of_labels.png")
+
+    figure_explanation = """The five levels of the hierarchy are explained below.
+
+- Sector
+    - Due to the scope of the project, the only sector available is Agriculture.
+- Element
+    - Exposed elements are “people, property, systems, or other elements present in hazard zones that are thereby subject to potential losses” (UNISDR, 2009).
+    - The dataset contains Crops, Livestock, and Fisheries.
+- Hazard
+    - Hazards are dangerous objects, activities, or occurrences that may cause harm to elements (UNISDR, 2009).
+    - The dataset contains Drought, Flood, Rain-Induced Landslide, Sea Level Rise, and Storm Surge.
+- Disaster Risk Aspect
+    - This level contains general aspects relating to disaster risk: Hazard, Exposure, Sensitivity, Degree of Impact, Adaptive Capacity, and Overall Risk.
+- Detail
+    - This is the bottom-most level of the hierarchy. It contains various specific details.
+    - For example, it contains key metrics of disaster risk, such as Vulnerability Score and Risk Score.
+"""
+
+    with st.expander("Click me for an explanation of the levels of the hierarchy.", expanded = False):
+        st.markdown(figure_explanation)
+
+    system_explanation = """## How to Select a Variable
+
+First, you have to select "List of barangays" or "Other variable".
+
+- List of barangays: This variable contains the names of the barangays. This is useful for making bar charts.
+- Other variable: Select a variable in the hierarchy.
+    
+In the hierarchy, the option that you choose at a higher level will change the options available at a lower level. Because of this, it is good to answer the selectboxes from **top to bottom**.
+
+For example, if the element “Crops” is selected, 6 hazard options are available. However, if the element “Fisheries” is selected, only 4 hazard options are available. This is what we mean when we say that changing a higher level changes the options at a lower level."""
+
+    st.markdown(system_explanation)
+
+    full_practice_text = """## Practice Selecting a Variable
+    
+The variable selection system is given below, so try practicing here. Your task is to find the following variable:
+
+- *Sector*: Agriculture
+- *Element*: Livestock
+- *Hazard*: Flood
+- *Disaster Risk Aspect*: Overall Risk
+- *Detail*: Vulnerability Score 
+
+Remember to answer the selectboxes from top to bottom. A message will appear at the bottom of the page telling you if you found the variable."""
+
+    st.markdown(full_practice_text)
+
+    sample_label, sample_dtype, sample_encoding = selection_feature(mi_df, flat_df, var_name = "practice")
+    
+    # Change the found variable based on whether the correct label was found.
+    found = (sample_label == "Agriculture/Livestock/Flood/Overall Risk/Vulnerability Score")
+
+    if found:
+        st.markdown("## [\U00002714] You found it!\n\nNow you know how to use the variable selection system.")
+    else:
+        st.markdown("## [\U0000274C] You haven't found the variable yet.")

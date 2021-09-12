@@ -1,5 +1,4 @@
 import pandas as pd
-import geopandas as gpd
 import numpy as np
 import streamlit as st
 import altair as alt
@@ -204,6 +203,8 @@ def barangay_summary_feature(mi_df, flat_df):
 
     st.markdown("## Risk of {} Against {}".format(element_select, hazard_select))
 
+
+
     # List of key categories
     cat_list = [
         "Degree Of Impact Category",
@@ -236,6 +237,15 @@ def barangay_summary_feature(mi_df, flat_df):
 
     st.markdown("### Key Categories")
     st.dataframe(key_categories)
+
+    # Help box
+    with st.expander("Info on Categories", expanded = False):
+        st.markdown("""- Degree of Impact Category: This describes how greatly the element would be impacted if the hazard occurred. In other words, it describes potential damage.
+
+- Vulnerability Category: This describes Degree of Impact while taking Adaptive Capacity into account. Vulnerability is lower if the barangay has better resources to prevent damage or recover from it.
+
+- Risk Category: This describes how likely it is for the hazard to occur in the barangay, as well as how severe the consequence of the hazard may be.""")
+    
 
     # From here, we prepare to get the key scores.
 
@@ -336,18 +346,23 @@ def barangay_summary_feature(mi_df, flat_df):
    
     st.dataframe(key_score_df)
 
-    with st.expander("Help"):
+    # Help box
+    with st.expander("Info on Scores"):
         st.markdown("""Here is how the scores were calculated.
 
 - Degree of Impact Score = mean(Exposure Score, Sensitivity Score)
 - Vulnerability Score = Degree of Impact Score / Adaptive Capacity Score
 - Risk Score = Severity of Consequence Score x Likelihood of Occurrence
 
-Percentiles are given in comparison to other barangays with the same element and hazard combination. A percentile near 100 means that  the score is relatively high.""")
+For each score, a percentile is given in comparison to other barangays (where applicable). A percentile near 100 means that  the score is relatively high.""")
+
+
+    # Histogram feature
+    st.markdown("## Histograms of Scores\n\nThese histograms can help see how high or low the score of {} is in comparison to other barangays' score.".format(barangay))
 
     with st.expander("Display Histograms"):
 
-        st.caption("The red line in each histogram represents the score of {}.".format(barangay))
+        st.markdown("The red line in each histogram represents the score of {}.\n\n---".format(barangay))
 
         # Make a 4 x 2 grid of histograms for the 8 scores.
         for grid_row in range(4):

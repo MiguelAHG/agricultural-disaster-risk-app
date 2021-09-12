@@ -4,7 +4,7 @@ import altair as alt
 import streamlit as st
 
 # Import custom function
-from app_select_variable import select_variable
+from app_select_variable import selection_help_box, selection_feature
 
 def graphing_feature(mi_df, flat_df):
     """Graphing feature of app."""
@@ -45,19 +45,17 @@ def graphing_feature(mi_df, flat_df):
 
     st.markdown("### Select Variables")
 
-    st.markdown("""The variables have been grouped into a heirarchical structure for ease of use. Each variable name is composed of a Sector, Element, Hazard, Disaster Risk Aspect, and Detail. The option that you choose at a higher level will change the options available at a lower level. Thus, please answer the selectboxes from **top to bottom**.
-
-Also, note that some variable names may have (dot) or (bracket) in them. This means that special characters like . [ ] were removed in order to avoid errors in the program.""")
+    selection_help_box()
 
     cols = st.columns(num_vars)
 
     with cols[0]:
-        x_label, x_dtype, x_encoding = select_variable(mi_df, flat_df, var_name = "x")
+        x_label, x_dtype, x_encoding = selection_feature(mi_df, flat_df, var_name = "x")
         var_list = [x_label]
 
     if num_vars == 2:
         with cols[1]:
-            y_label, y_dtype, y_encoding = select_variable(mi_df, flat_df, var_name = "y")
+            y_label, y_dtype, y_encoding = selection_feature(mi_df, flat_df, var_name = "y")
             var_list.append(y_label)
     else:
         y_label = "count()"

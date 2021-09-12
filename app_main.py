@@ -8,13 +8,13 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import altair as alt
-import geopandas as gpd
 
 # Import from local scripts
 from app_graphing import graphing_feature
 from app_map import map_feature
 from app_barangay_summary import barangay_summary_feature
 from app_home import home_feature
+from app_select_variable import selection_help_page
 
 # Cache the function that gets the data.
 @st.cache(suppress_st_warning = True, allow_output_mutation = True)
@@ -35,10 +35,6 @@ if __name__ == "__main__":
 
     st.title("Agricultural Disaster Risk App for Butuan City")
 
-    # Code for online version
-    # if pw != st.secrets["PASSWORD"]:
-    #     st.stop()
-
     # Get the data.
     mi_df, flat_df, topo_data = get_data()
 
@@ -52,6 +48,7 @@ if __name__ == "__main__":
                 "Map of Butuan City",
                 "Barangay Data Summaries",
                 "Graphing Tool",
+                "Help: Variable Selection"
             ],
         )
 
@@ -63,3 +60,5 @@ if __name__ == "__main__":
         barangay_summary_feature(mi_df, flat_df)
     elif feature == "Graphing Tool":
         graphing_feature(mi_df, flat_df)
+    elif feature == "Help: Variable Selection":
+        selection_help_page(mi_df, flat_df)

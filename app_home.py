@@ -5,7 +5,9 @@ def home_feature():
 
     page_text = """Welcome to the agricultural disaster risk app. This app was made by Team Datos Puti for the Project Sparta hackathon.
 
-Use the buttons in the sidebar on the left to navigate the app, which has 3 features:
+Use the buttons in the sidebar on the left to navigate the app. If this is your first time, we recommend reading the "Help: Variable Selection" page first.
+
+After that, you can use the 3 main features:
 
 - Map of Butuan City
     - A map of Butuan city's barangays is shown. Select an agricultural variable to create a choropleth map where the barangays are colored based on value.
@@ -31,8 +33,6 @@ Migs Germar
 
 Lorenzo Layug, Fiona Jao, and Uriel Dolorfino
 
-- Data inspection and cleaning
-
-# """
+- Data inspection and cleaning"""
 
     st.markdown(page_text)

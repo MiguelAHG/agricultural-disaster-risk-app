@@ -4,7 +4,7 @@ import altair as alt
 import streamlit as st
 from PIL import Image
 
-from app_select_variable import select_variable
+from app_select_variable import selection_help_box, selection_feature
 
 def map_feature(mi_df, flat_df, topo_data):
     """Map of Butuan City feature."""
@@ -16,7 +16,10 @@ def map_feature(mi_df, flat_df, topo_data):
     with st.sidebar:
         st.markdown("---")
         st.markdown("# Variable Selection")
-        map_var, map_dtype, map_encoding = select_variable(mi_df, flat_df, var_name = "Map")
+
+        selection_help_box()
+
+        map_var, map_dtype, map_encoding = selection_feature(mi_df, flat_df, var_name = "Map")
 
     # Get the text from the lowest level in the hierarchy.
     map_detail = map_var.split("/")[-1]
@@ -52,7 +55,7 @@ def map_feature(mi_df, flat_df, topo_data):
             
             # Legend title only shows Detail level of hierarchy
             legend_title = map_var.split("/")[-1]
-            
+
             color_basic = alt.Color(
                 map_var,
                 type = map_encoding,
