@@ -33,9 +33,11 @@ This document covers the following topics:
 This project used open data obtained from the following websites:
 
 - Sparta Portal
-  - Open data from the Sparta Portal were cleaned and uploaded to the `cleaning_inputs` and `cleaning_outputs` folders.
+  - Open data from the Sparta Portal were cleaned and uploaded to the `cleaning_inputs`, `cleaning_outputs`, and `open_data_maps` folders.
+  - We have been instructed that the open data from the Sparta Portal only be "utilized solely for this competition and not for use outside of SPARTA hackathon." Thus, do not download the files in the mentioned folders.
 - Global Adminstrative Areas (GADM) Version 3.4
   - Geospatial data on Butuan City were uploaded to `geodata/barangay_topojson.json`.
+  - GADM's license states that its data may be used for non-commercial purposes.
 
 Complete references are provided below.
 
@@ -61,6 +63,5 @@ Team Members: Lorenzo Layug, Fiona Jao, Uriel Dolorfino
 An official license has not yet been chosen for this repository. The repository is only public because this is necessary for the web app to deployed. However, there are limitations on what can be done with its contents. For now, the team would like to request visitors to follow these terms of use:
 
 - You may visit the Streamlit web app and use its features, but not download any data or image displayed in it.
-- We have been instructed that the open data from the Sparta Portal only be "utilized solely for this competition and not for use outside of SPARTA hackathon." Thus, do not download the data in `cleaning_inputs` and `cleaning_outputs`.
 - You may not download, reproduce, distribute, or create derivative works from any part of this repository. As this repository is a submission to the Project Sparta hackathon, this rule is especially true for other participants in the hackathon.
 - Personnel involved in the judging process of the Project Sparta hackathon may use the web app, download the contents of the web app, and download the contents of the repository.
