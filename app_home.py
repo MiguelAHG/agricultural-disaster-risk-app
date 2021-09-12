@@ -22,17 +22,13 @@ After that, you can use the 3 main features:
 
 "Datos Puti" is a group of senior high school students from a school in Quezon City.
 
-## Leader
+Team leader: Migs Germar
 
-Migs Germar
+- Handled the overall planning of the project.
+- Handled all programming tasks from automated data cleaning to web app development.
 
-- Overall planning
-- Programming the web app
+Team Members: Lorenzo Layug, Fiona Jao, Uriel Dolorfino
 
-## Members
-
-Lorenzo Layug, Fiona Jao, and Uriel Dolorfino
-
-- Data inspection and cleaning"""
+- Contributed to manual data cleaning and final paper writing."""
 
     st.markdown(page_text)
