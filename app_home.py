@@ -18,7 +18,7 @@ After that, you can use the 3 main features:
 
 ---
 
-# The Team
+## The Team
 
 "Datos Puti" is a group of senior high school students from a school in Quezon City. This app was created by the team as a submission to the Project Sparta hackathon.
 
@@ -29,6 +29,28 @@ Team leader: Migs Germar
 
 Team Members: Lorenzo Layug, Fiona Jao, Uriel Dolorfino
 
-- Contributed to manual data cleaning and final paper writing."""
+- Contributed to manual data cleaning and final paper writing.
+
+---
+
+## Documentation
+
+For more information on the app, visit the following Google Docs file:
+
+[Agricultural Disaster Risk Web App - Datos Puti Team](https://docs.google.com/document/d/1feKAvHEzJG2PmKtZrXvsGHOJL4c-kaTc4b_W_fHP-68/edit?usp=sharing)
+
+This project used open data obtained from the following websites:
+
+- Sparta Portal
+  - This is the source of the agricultural disaster risk data used throughout the app.
+- Global Adminstrative Areas (GADM) Version 3.4
+  - This is the source of the geospatial data used in the "Map of Butuan City" feature.
+  - GADM's license states that its data may be used for non-commercial purposes.
+
+Complete references are provided below.
+
+Development Academy of the Philippines. (n.d.). Butuan City Datasets. Sparta Portal. Retrieved September 8, 2021, from https://sparta.dap.edu.ph/opendata/lgu/butuancity/datasets
+
+University of Berkeley, Museum of Vertebrate Zoology and the International Rice Research Institute. (2018, April). Global Adminstrative Areas (GADM) Version 3.4. https://gadm.org"""
 
     st.markdown(page_text)
