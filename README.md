@@ -9,7 +9,7 @@ This is the repository for a web app deployed on Streamlit Cloud. The app was ma
 - View a summary of disaster risk data on a chosen barangay.
 - Generate custom interactive univariate or bivariate charts.
 
-In order to view the app, visit the following link:
+In order to view the app, visit the following link. (The app is better used on desktop, not mobile.)
 
 https://share.streamlit.io/miguelahg/agricultural-disaster-risk-app/main/app_main.py
 
