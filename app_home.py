@@ -3,7 +3,7 @@ import streamlit as st
 def home_feature():
     """Home page of the web app."""
 
-    page_text = """Welcome to the agricultural disaster risk app. This app was made by Team Datos Puti for the Project Sparta hackathon.
+    page_text = """Welcome to the agricultural disaster risk app. If you are using this app on mobile, we recommend using it on **desktop** for a better user experience.
 
 Use the buttons in the sidebar on the left to navigate the app. If this is your first time, we recommend reading the "Help: Variable Selection" page first.
 
@@ -20,7 +20,7 @@ After that, you can use the 3 main features:
 
 # The Team
 
-"Datos Puti" is a group of senior high school students from a school in Quezon City.
+"Datos Puti" is a group of senior high school students from a school in Quezon City. This app was created by the team as a submission to the Project Sparta hackathon.
 
 Team leader: Migs Germar
 
