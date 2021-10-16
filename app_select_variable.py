@@ -43,13 +43,21 @@ def selection_feature(mi_df, flat_df, var_name = "x"):
 
         for mi_level in narrow_down.columns:
             
+            if len(selection_list) > 0:
+                prev_selection = selection_list[-1]
+            else:
+                prev_selection = "no selection"
+
             options = narrow_down[mi_level].unique()
 
             selection = st.selectbox(
                 label = mi_level,
                 options = options,
                 help = help_dict[mi_level],
-                key = f"{var_name} {mi_level}", # Use a unique key so that the app can differentiate between selectboxes.
+                key = f"{var_name}/{mi_level}/{prev_selection}",
+                # Use a unique key so that the app can differentiate between selectboxes.
+                # prev_selection is included so that the app doesn't get confused
+                # when a higher level changes the options at a lower level.
             )
 
             narrow_down = narrow_down.loc[
