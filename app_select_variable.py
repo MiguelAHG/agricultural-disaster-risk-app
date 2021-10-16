@@ -1,5 +1,3 @@
-import pandas as pd
-import numpy as np
 import streamlit as st
 
 from pandas.api.types import is_string_dtype
@@ -11,16 +9,17 @@ def selection_feature(mi_df, flat_df, var_name = "x"):
     st.markdown("---\n\n#### {} Variable".format(var_name))
 
     first_radio = st.radio(
-        "What would you like to select?",
+        "What variable would you like to select?",
         options = [
-            "List of barangays",
+            "Barangay",
             "Other variable",
         ],
         key = f"{var_name} radio",
     )
 
-    if first_radio == "List of barangays":
-        selection_list = ["(Barangay)"]
+    if first_radio == "Barangay":
+        show_label = "(Barangay)"
+        final_label = "(Barangay)"
 
     else:
         # Variable selection system for hierarchy of labels
@@ -60,11 +59,6 @@ def selection_feature(mi_df, flat_df, var_name = "x"):
 
             selection_list.append(selection)
 
-    # Determine final label
-    if selection_list[0] == "(Barangay)":
-        show_label = "(Barangay)"
-        final_label = "(Barangay)"
-    else:
         final_label = "/".join(selection_list)
         show_label = final_label
 
@@ -164,9 +158,9 @@ The variables in the dataset have been grouped together to make it easier to nav
 
     system_explanation = """## How to Select a Variable
 
-First, you have to select "List of barangays" or "Other variable".
+First, you have to select "Barangay" or "Other variable".
 
-- List of barangays: This variable contains the names of the barangays. This is useful for making bar charts.
+- Barangay: This variable contains the names of the barangays. This is useful for making bar charts.
 - Other variable: Select a variable in the hierarchy.
     
 In the hierarchy, the option that you choose at a higher level will change the options available at a lower level. Because of this, it is good to answer the selectboxes from **top to bottom**.

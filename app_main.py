@@ -5,7 +5,6 @@ Main script for the app.
 # Note: use streamlit_env, not base.
 
 import pandas as pd
-import numpy as np
 import streamlit as st
 import altair as alt
 
@@ -22,10 +21,10 @@ def get_data():
     mi_df = pd.read_csv("./cleaning_outputs/multiindex_frame.csv")
     flat_df = pd.read_csv("./cleaning_outputs/flat_label_data.csv")
     
-    my_url = "https://raw.githubusercontent.com/MiguelAHG/agricultural-disaster-risk-app/main/geodata/barangay_topojson.json"
+    topojson_url = "https://raw.githubusercontent.com/MiguelAHG/agricultural-disaster-risk-app/main/geodata/barangay_topojson.json"
 
     topo_data = alt.topo_feature(
-        url = my_url,
+        url = topojson_url,
         feature = "barangay_geodata",
     )
 
