@@ -3,7 +3,7 @@ import streamlit as st
 def home_feature():
     """Home page of the web app."""
 
-    page_text = """Welcome to agriHanda. We recommend using this app on **desktop** for a better user experience.
+    intro_text = """Welcome to agriHanda. We recommend using this app on **desktop** for a better user experience.
 
 Use the buttons in the sidebar on the left to navigate the app. If this is your first time, we recommend reading the "Help: Variable Selection" page first.
 
@@ -14,11 +14,9 @@ After that, you can use the 3 main features:
 - Barangay Data Summaries
     - Select a barangay to see a summary of its agricultural disaster risk. This includes key risk categories and scores for specific elements and hazards.
 - Graphing Tool
-    - Select a chart type, agricultural variables, and other options to make an interactive chart with tooltips.
+    - Select a chart type, agricultural variables, and other options to make an interactive chart with tooltips."""
 
----
-
-## The Team
+    team_text = """## The Team
 
 "Datos Puti" is a group of senior high school students from a school in Quezon City. This app was created by the team as a submission to the Project Sparta hackathon.
 
@@ -29,11 +27,9 @@ Team leader: Migs Germar
 
 Team Members: Lorenzo Layug, Fiona Jao, Uriel Dolorfino
 
-- Contributed to manual data cleaning and final paper writing.
+- Contributed to manual data cleaning and final paper writing."""
 
----
-
-## Documentation
+    doc_text = """## Documentation
 
 For more information on the app, visit the following Google Docs file:
 
@@ -53,4 +49,11 @@ Development Academy of the Philippines. (n.d.). Butuan City Datasets. Sparta Por
 
 University of Berkeley, Museum of Vertebrate Zoology and the International Rice Research Institute. (2018, April). Global Adminstrative Areas (GADM) Version 3.4. https://gadm.org"""
 
-    st.markdown(page_text)
+    with st.expander("Introduction", expanded = True):
+        st.markdown(intro_text)
+
+    with st.expander("The Team", expanded = False):
+        st.markdown(team_text)
+
+    with st.expander("Documentation", expanded = False):
+        st.markdown(doc_text)
