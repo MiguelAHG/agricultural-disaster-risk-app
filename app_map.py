@@ -25,7 +25,9 @@ def map_feature(mi_df, flat_df, topo_data):
 
     st.markdown("## Map")
 
-    with st.expander("View Map", expanded = True):
+    st.markdown("Performance issues may occur if the map is left open while the variable is being changed. Before changing the variable, please click 'Toggle Map' to close the map. After changing the variable, click 'Toggle Map' again to open the map.")
+
+    with st.expander("Toggle Map", expanded = True):
 
         # Base layer.
         # Use if the chosen variable is the barangay.
