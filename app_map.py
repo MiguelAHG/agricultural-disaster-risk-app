@@ -71,10 +71,8 @@ def map_feature(mi_df, flat_df, topo_data):
                 view = st.radio(
                     label = "Map View",
                     options = ["See All Barangays", "Highlight Barangays"],
+                    help = "'See All Barangays' colors all barangays where there is data.\n\n'Highlight Barangays' provides a slider to highlight specific barangays based on variable value.",
                 )
-
-                if st.checkbox("Help", value = False):
-                    st.markdown("'See All Barangays' colors all barangays where there is data.\n\n'Highlight Barangays' provides a slider to highlight specific barangays based on variable value.")
 
                 if view == "See All Barangays":
                     selection_exists = False
@@ -116,8 +114,7 @@ def map_feature(mi_df, flat_df, topo_data):
 
                 # Standard multi-select for text variables.
 
-                if st.checkbox("Help", value = False):
-                    st.markdown("Click on a barangay in order to highlight all barangays that share the same category.\n\nTo return the map to its original state, click on an empty space near the edge of the map.")
+                st.markdown("Click on a barangay in order to highlight all barangays that share the same category.\n\nTo return the map to its original state, click on an empty space near the edge of the map.")
 
                 selection = alt.selection_multi(fields = [map_var])
 
