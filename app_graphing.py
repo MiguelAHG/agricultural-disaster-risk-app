@@ -109,9 +109,24 @@ def graphing_feature(mi_df, flat_df):
 
     with chart_expander:
 
-        # Error message to ensure quantitative variable for boxplot
-        if mark_type == "Boxplot" and ("quantitative" not in [x_encoding, y_encoding]):
-            st.error("Error: You have selected a boxplot. At least one variable must have Numerical data type and Quantitative encoding.")
+        # At least 1 variable must be quantitative for the inputs to be valid for a boxplot.
+        invalid_for_boxplot = (
+            mark_type == "Boxplot"
+            and (
+                (
+                    num_vars == 1
+                    and x_encoding != "quantitative"
+                )
+                or
+                (
+                    num_vars == 2
+                    and ("quantitative" not in [x_encoding, y_encoding])
+                )
+            )
+        )
+
+        if invalid_for_boxplot:
+            st.warning("Warning: You have selected a boxplot. Please ensure that at least one variable has both Numerical data type and Quantitative encoding type.")
             st.stop()
 
         subset = var_list.copy()
@@ -133,7 +148,10 @@ def graphing_feature(mi_df, flat_df):
 
         elif mark_type == "Bar":
             if num_vars == 1 and x_encoding == "quantitative":
-                bin_x = st.checkbox("Bin the x-axis (for histogram)")
+                bin_x = st.checkbox(
+                    "Bin the x-axis to produce a histogram",
+                    value = True,
+                )
 
             chart = chart.mark_bar()
 
@@ -171,6 +189,8 @@ def graphing_feature(mi_df, flat_df):
             alt.Tooltip(x_label, type = x_encoding, title = x_title)
         )
 
+        # Do not encode the y variable if the chart is a univariate boxplot.
+        # This is done in order to avoid an error.
         if not (mark_type == "Boxplot" and num_vars == 1):
             
             # Use Detail level as title.
@@ -188,11 +208,15 @@ def graphing_feature(mi_df, flat_df):
                 alt.Tooltip(y_label, type = y_encoding, title = y_title)
             )
 
-        chart = (
-            chart
-            .encode(
+        # Do not use a tooltip if the graph is a univariate histogram.
+        # When a tooltip is used, the histogram is not drawn properly.
+        if not bin_x:
+            chart = chart.encode(
                 tooltip = tooltip_list
             )
+
+        chart = (
+            chart
             .properties(
                 title = "Chart Type: " + mark_type,
                 height = height_px,
