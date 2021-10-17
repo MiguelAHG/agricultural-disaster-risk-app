@@ -33,12 +33,13 @@ def get_data():
 if __name__ == "__main__":
 
     st.set_page_config(
-        page_title = "Agricultural Disaster Risk App for Butuan City",
+        page_title = "agriHanda",
         page_icon = ":ear_of_rice:",
         initial_sidebar_state = "expanded",
     )
 
-    st.title("Agricultural Disaster Risk App for Butuan City")
+    st.title("agriHanda :ear_of_rice:")
+    st.caption("Agricultural Disaster Risk App for Butuan City")
 
     # Get the data.
     mi_df, flat_df, topo_data = get_data()

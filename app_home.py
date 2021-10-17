@@ -3,7 +3,7 @@ import streamlit as st
 def home_feature():
     """Home page of the web app."""
 
-    page_text = """Welcome to the agricultural disaster risk app. If you are using this app on mobile, we recommend using it on **desktop** for a better user experience.
+    page_text = """Welcome to agriHanda. We recommend using this app on **desktop** for a better user experience.
 
 Use the buttons in the sidebar on the left to navigate the app. If this is your first time, we recommend reading the "Help: Variable Selection" page first.
 
