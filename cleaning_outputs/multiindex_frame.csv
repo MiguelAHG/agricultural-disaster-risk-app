@@ -50,7 +50,6 @@ Agriculture,Crops,All Hazards,Adaptive Capacity,Wealth_Description_count
 Agriculture,Crops,All Hazards,Adaptive Capacity,Wealth_Score
 Agriculture,Crops,All Hazards,Exposure,Area Of Agricultural Lands (Hectares)
 Agriculture,Crops,All Hazards,Exposure,Average Income Per Hectare Per Year (Php)
-Agriculture,Crops,All Hazards,Exposure,Geographical Area Or Ecosystem
 Agriculture,Crops,All Hazards,Exposure,No Households Dependent On Agriculture
 Agriculture,Crops,All Hazards,Exposure,Number Of Hazards That May Affect The Element
 Agriculture,Crops,All Hazards,Exposure,Variety Of Commodity
@@ -70,6 +69,7 @@ Agriculture,Crops,Drought,Degree of Impact,Degree Of Impact Score
 Agriculture,Crops,Drought,Exposure,% Of Exposed Agricultural Lands (Hectares)
 Agriculture,Crops,Drought,Exposure,Exposed Agricultural Lands (Hectares)
 Agriculture,Crops,Drought,Exposure,Exposure Score
+Agriculture,Crops,Drought,Exposure,Geographical Area Or Ecosystem
 Agriculture,Crops,Drought,Exposure,This Hazard May Affect The Element
 Agriculture,Crops,Drought,Hazard,Likelihood Of Occurrence
 Agriculture,Crops,Drought,Hazard,Magnitude Or Depth
@@ -83,6 +83,7 @@ Agriculture,Crops,Flood,Degree of Impact,Degree Of Impact Score
 Agriculture,Crops,Flood,Exposure,% Of Exposed Agricultural Lands (Hectares)
 Agriculture,Crops,Flood,Exposure,Exposed Agricultural Lands (Hectares)
 Agriculture,Crops,Flood,Exposure,Exposure Score
+Agriculture,Crops,Flood,Exposure,Geographical Area Or Ecosystem
 Agriculture,Crops,Flood,Exposure,This Hazard May Affect The Element
 Agriculture,Crops,Flood,Hazard,Likelihood Of Occurrence
 Agriculture,Crops,Flood,Hazard,Magnitude Or Depth
@@ -96,6 +97,7 @@ Agriculture,Crops,Rain-Induced Landslide,Degree of Impact,Degree Of Impact Score
 Agriculture,Crops,Rain-Induced Landslide,Exposure,% Of Exposed Agricultural Lands (Hectares)
 Agriculture,Crops,Rain-Induced Landslide,Exposure,Exposed Agricultural Lands (Hectares)
 Agriculture,Crops,Rain-Induced Landslide,Exposure,Exposure Score
+Agriculture,Crops,Rain-Induced Landslide,Exposure,Geographical Area Or Ecosystem
 Agriculture,Crops,Rain-Induced Landslide,Exposure,This Hazard May Affect The Element
 Agriculture,Crops,Rain-Induced Landslide,Hazard,Likelihood Of Occurrence
 Agriculture,Crops,Rain-Induced Landslide,Hazard,Magnitude Or Depth
@@ -109,6 +111,7 @@ Agriculture,Crops,Sea Level Rise,Degree of Impact,Degree Of Impact Score
 Agriculture,Crops,Sea Level Rise,Exposure,% Of Exposed Agricultural Lands (Hectares)
 Agriculture,Crops,Sea Level Rise,Exposure,Exposed Agricultural Lands (Hectares)
 Agriculture,Crops,Sea Level Rise,Exposure,Exposure Score
+Agriculture,Crops,Sea Level Rise,Exposure,Geographical Area Or Ecosystem
 Agriculture,Crops,Sea Level Rise,Exposure,This Hazard May Affect The Element
 Agriculture,Crops,Sea Level Rise,Hazard,Likelihood Of Occurrence
 Agriculture,Crops,Sea Level Rise,Hazard,Magnitude Or Depth
@@ -122,6 +125,7 @@ Agriculture,Crops,Storm Surge,Degree of Impact,Degree Of Impact Score
 Agriculture,Crops,Storm Surge,Exposure,% Of Exposed Agricultural Lands (Hectares)
 Agriculture,Crops,Storm Surge,Exposure,Exposed Agricultural Lands (Hectares)
 Agriculture,Crops,Storm Surge,Exposure,Exposure Score
+Agriculture,Crops,Storm Surge,Exposure,Geographical Area Or Ecosystem
 Agriculture,Crops,Storm Surge,Exposure,This Hazard May Affect The Element
 Agriculture,Crops,Storm Surge,Hazard,Likelihood Of Occurrence
 Agriculture,Crops,Storm Surge,Hazard,Magnitude Or Depth
@@ -156,7 +160,6 @@ Agriculture,Fisheries,All Hazards,Adaptive Capacity,Wealth_Description_count
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Wealth_Score
 Agriculture,Fisheries,All Hazards,Exposure,Bangus_Ave Output Per Hectare (Mt) Fish Culture
 Agriculture,Fisheries,All Hazards,Exposure,Bangus_Ave Output Per Hectare (Php)
-Agriculture,Fisheries,All Hazards,Exposure,Geographical Area Or Ecosystem
 Agriculture,Fisheries,All Hazards,Exposure,No Of Affected Fish Sanctuaries
 Agriculture,Fisheries,All Hazards,Exposure,No Of Commercial Fishermen
 Agriculture,Fisheries,All Hazards,Exposure,No Of Fish Ports (slash) Storage Facilities
@@ -180,6 +183,7 @@ Agriculture,Fisheries,Rain-Induced Landslide,Degree of Impact,Degree Of Impact C
 Agriculture,Fisheries,Rain-Induced Landslide,Degree of Impact,Degree Of Impact Score
 Agriculture,Fisheries,Rain-Induced Landslide,Exposure,Exposed Area
 Agriculture,Fisheries,Rain-Induced Landslide,Exposure,Exposure Score
+Agriculture,Fisheries,Rain-Induced Landslide,Exposure,Geographical Area Or Ecosystem
 Agriculture,Fisheries,Rain-Induced Landslide,Exposure,Percentage Of Exposed Areas
 Agriculture,Fisheries,Rain-Induced Landslide,Exposure,This Hazard May Affect The Element
 Agriculture,Fisheries,Rain-Induced Landslide,Hazard,Likelihood Of Occurrence
@@ -193,6 +197,7 @@ Agriculture,Fisheries,Sea Level Rise,Degree of Impact,Degree Of Impact Category
 Agriculture,Fisheries,Sea Level Rise,Degree of Impact,Degree Of Impact Score
 Agriculture,Fisheries,Sea Level Rise,Exposure,Exposed Area
 Agriculture,Fisheries,Sea Level Rise,Exposure,Exposure Score
+Agriculture,Fisheries,Sea Level Rise,Exposure,Geographical Area Or Ecosystem
 Agriculture,Fisheries,Sea Level Rise,Exposure,Percentage Of Exposed Areas
 Agriculture,Fisheries,Sea Level Rise,Exposure,This Hazard May Affect The Element
 Agriculture,Fisheries,Sea Level Rise,Hazard,Likelihood Of Occurrence
@@ -205,6 +210,7 @@ Agriculture,Fisheries,Storm Surge,Degree of Impact,Degree Of Impact Category
 Agriculture,Fisheries,Storm Surge,Degree of Impact,Degree Of Impact Score
 Agriculture,Fisheries,Storm Surge,Exposure,Exposed Area
 Agriculture,Fisheries,Storm Surge,Exposure,Exposure Score
+Agriculture,Fisheries,Storm Surge,Exposure,Geographical Area Or Ecosystem
 Agriculture,Fisheries,Storm Surge,Exposure,Percentage Of Exposed Areas
 Agriculture,Fisheries,Storm Surge,Exposure,This Hazard May Affect The Element
 Agriculture,Fisheries,Storm Surge,Hazard,Likelihood Of Occurrence
@@ -275,7 +281,6 @@ Agriculture,Livestock,All Hazards,Exposure,Dominant Livestock_LAYER
 Agriculture,Livestock,All Hazards,Exposure,Dominant Livestock_PIGLET
 Agriculture,Livestock,All Hazards,Exposure,Dominant Livestock_SOW
 Agriculture,Livestock,All Hazards,Exposure,Dominant Livestock_count
-Agriculture,Livestock,All Hazards,Exposure,Geographical Area Or Ecosystem
 Agriculture,Livestock,All Hazards,Exposure,No Of Livestock Farming Dependent Households
 Agriculture,Livestock,All Hazards,Exposure,Number Of Hazards That May Affect The Element
 Agriculture,Livestock,All Hazards,Exposure,Total Area Allocation (Hectares)
@@ -297,6 +302,7 @@ Agriculture,Livestock,Drought,Degree of Impact,Degree Of Impact Score
 Agriculture,Livestock,Drought,Exposure,Area Affected By Hazard
 Agriculture,Livestock,Drought,Exposure,Exposure Percentage
 Agriculture,Livestock,Drought,Exposure,Exposure Score
+Agriculture,Livestock,Drought,Exposure,Geographical Area Or Ecosystem
 Agriculture,Livestock,Drought,Exposure,This Hazard May Affect The Element
 Agriculture,Livestock,Drought,Hazard,Likelihood Of Occurrence
 Agriculture,Livestock,Drought,Hazard,Magnitude Or Depth
@@ -310,6 +316,7 @@ Agriculture,Livestock,Flood,Degree of Impact,Degree Of Impact Score
 Agriculture,Livestock,Flood,Exposure,Area Affected By Hazard
 Agriculture,Livestock,Flood,Exposure,Exposure Percentage
 Agriculture,Livestock,Flood,Exposure,Exposure Score
+Agriculture,Livestock,Flood,Exposure,Geographical Area Or Ecosystem
 Agriculture,Livestock,Flood,Exposure,This Hazard May Affect The Element
 Agriculture,Livestock,Flood,Hazard,Likelihood Of Occurrence
 Agriculture,Livestock,Flood,Hazard,Magnitude Or Depth
@@ -323,6 +330,7 @@ Agriculture,Livestock,Rain-Induced Landslide,Degree of Impact,Degree Of Impact S
 Agriculture,Livestock,Rain-Induced Landslide,Exposure,Area Affected By Hazard
 Agriculture,Livestock,Rain-Induced Landslide,Exposure,Exposure Percentage
 Agriculture,Livestock,Rain-Induced Landslide,Exposure,Exposure Score
+Agriculture,Livestock,Rain-Induced Landslide,Exposure,Geographical Area Or Ecosystem
 Agriculture,Livestock,Rain-Induced Landslide,Exposure,This Hazard May Affect The Element
 Agriculture,Livestock,Rain-Induced Landslide,Hazard,Likelihood Of Occurrence
 Agriculture,Livestock,Rain-Induced Landslide,Hazard,Magnitude Or Depth
@@ -336,6 +344,7 @@ Agriculture,Livestock,Sea Level Rise,Degree of Impact,Degree Of Impact Score
 Agriculture,Livestock,Sea Level Rise,Exposure,Area Affected By Hazard
 Agriculture,Livestock,Sea Level Rise,Exposure,Exposure Percentage
 Agriculture,Livestock,Sea Level Rise,Exposure,Exposure Score
+Agriculture,Livestock,Sea Level Rise,Exposure,Geographical Area Or Ecosystem
 Agriculture,Livestock,Sea Level Rise,Exposure,This Hazard May Affect The Element
 Agriculture,Livestock,Sea Level Rise,Hazard,Likelihood Of Occurrence
 Agriculture,Livestock,Sea Level Rise,Hazard,Magnitude Or Depth
@@ -349,6 +358,7 @@ Agriculture,Livestock,Storm Surge,Degree of Impact,Degree Of Impact Score
 Agriculture,Livestock,Storm Surge,Exposure,Area Affected By Hazard
 Agriculture,Livestock,Storm Surge,Exposure,Exposure Percentage
 Agriculture,Livestock,Storm Surge,Exposure,Exposure Score
+Agriculture,Livestock,Storm Surge,Exposure,Geographical Area Or Ecosystem
 Agriculture,Livestock,Storm Surge,Exposure,This Hazard May Affect The Element
 Agriculture,Livestock,Storm Surge,Hazard,Likelihood Of Occurrence
 Agriculture,Livestock,Storm Surge,Hazard,Magnitude Or Depth
