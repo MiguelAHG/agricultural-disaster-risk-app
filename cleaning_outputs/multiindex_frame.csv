@@ -8,7 +8,6 @@ Agriculture,Crops,All Hazards,Adaptive Capacity,Information_Description_SIGNAGE
 Agriculture,Crops,All Hazards,Adaptive Capacity,Information_Description_SOCIAL MEDIA
 Agriculture,Crops,All Hazards,Adaptive Capacity,Information_Description_TEXT MESSAGE
 Agriculture,Crops,All Hazards,Adaptive Capacity,Information_Description_TV
-Agriculture,Crops,All Hazards,Adaptive Capacity,Information_Description_count
 Agriculture,Crops,All Hazards,Adaptive Capacity,Information_Score
 Agriculture,Crops,All Hazards,Adaptive Capacity,Infrastructure_Description_COFFEE MILL
 Agriculture,Crops,All Hazards,Adaptive Capacity,Infrastructure_Description_CORN MILL
@@ -22,36 +21,30 @@ Agriculture,Crops,All Hazards,Adaptive Capacity,Infrastructure_Description_MECHA
 Agriculture,Crops,All Hazards,Adaptive Capacity,Infrastructure_Description_MPDP
 Agriculture,Crops,All Hazards,Adaptive Capacity,Infrastructure_Description_REAPER
 Agriculture,Crops,All Hazards,Adaptive Capacity,Infrastructure_Description_RICE MILL
-Agriculture,Crops,All Hazards,Adaptive Capacity,Infrastructure_Description_count
 Agriculture,Crops,All Hazards,Adaptive Capacity,Infrastructure_Score
 Agriculture,Crops,All Hazards,Adaptive Capacity,Institutional(slash)Government Investments_Description_CONTINGENCY PLAN
 Agriculture,Crops,All Hazards,Adaptive Capacity,Institutional(slash)Government Investments_Description_DRRMP
 Agriculture,Crops,All Hazards,Adaptive Capacity,Institutional(slash)Government Investments_Description_FORCED EVACUATION ORDINANCE
-Agriculture,Crops,All Hazards,Adaptive Capacity,Institutional(slash)Government Investments_Description_count
 Agriculture,Crops,All Hazards,Adaptive Capacity,Institutional(slash)Government Investments_Score
 Agriculture,Crops,All Hazards,Adaptive Capacity,Social_Description_AGRICULTURAL TECHNOLOGIST
 Agriculture,Crops,All Hazards,Adaptive Capacity,Social_Description_FA
 Agriculture,Crops,All Hazards,Adaptive Capacity,Social_Description_IA
 Agriculture,Crops,All Hazards,Adaptive Capacity,Social_Description_LFT
-Agriculture,Crops,All Hazards,Adaptive Capacity,Social_Description_count
 Agriculture,Crops,All Hazards,Adaptive Capacity,Social_Score
 Agriculture,Crops,All Hazards,Adaptive Capacity,Technology_Description_IEC
 Agriculture,Crops,All Hazards,Adaptive Capacity,Technology_Description_IEC ON CLIMATE SMART AGRICULTURE
 Agriculture,Crops,All Hazards,Adaptive Capacity,Technology_Description_ORGANIC AGRICULTURE TECHNOLOGY
 Agriculture,Crops,All Hazards,Adaptive Capacity,Technology_Description_RESEARCH STUDY ON FLOOD RESILIENT VARIETY
 Agriculture,Crops,All Hazards,Adaptive Capacity,Technology_Description_RESEARCH STUDY ON SALINITY RESILIENT VARIETY
-Agriculture,Crops,All Hazards,Adaptive Capacity,Technology_Description_count
 Agriculture,Crops,All Hazards,Adaptive Capacity,Technology_Score
 Agriculture,Crops,All Hazards,Adaptive Capacity,Wealth_Description_PCIC
 Agriculture,Crops,All Hazards,Adaptive Capacity,Wealth_Description_REHAB SEEDS FROM DEPARTMENT OF AGRICULTURE
 Agriculture,Crops,All Hazards,Adaptive Capacity,Wealth_Description_SURE AID LOAN
 Agriculture,Crops,All Hazards,Adaptive Capacity,Wealth_Description_SURE LOAN
-Agriculture,Crops,All Hazards,Adaptive Capacity,Wealth_Description_count
 Agriculture,Crops,All Hazards,Adaptive Capacity,Wealth_Score
 Agriculture,Crops,All Hazards,Exposure,Area Of Agricultural Lands (Hectares)
 Agriculture,Crops,All Hazards,Exposure,Average Income Per Hectare Per Year (Php)
 Agriculture,Crops,All Hazards,Exposure,No Households Dependent On Agriculture
-Agriculture,Crops,All Hazards,Exposure,Number Of Hazards That May Affect The Element
 Agriculture,Crops,All Hazards,Exposure,Variety Of Commodity
 Agriculture,Crops,All Hazards,Sensitivity,No Of Farming Households
 Agriculture,Crops,All Hazards,Sensitivity,No Of Farming Households_Score
@@ -142,21 +135,17 @@ Agriculture,Fisheries,All Hazards,Adaptive Capacity,Government Investments_Descr
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Government Investments_Description_CONTINGENCY PLAN
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Government Investments_Description_DRRMP
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Government Investments_Description_FORCED EVACUATION ORDINANCE
-Agriculture,Fisheries,All Hazards,Adaptive Capacity,Government Investments_Description_count
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Government Investments_Score
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Information_Description_RADIO AND TV ANNOUNCEMENT
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Information_Description_SOCIAL MEDIA (FACEBOOK; INSTAGRAM)
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Information_Description_TEXT MESSAGE
-Agriculture,Fisheries,All Hazards,Adaptive Capacity,Information_Description_count
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Information_Score
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Technology_Description_IEC
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Technology_Description_RESEARCH STUDIES ON SPECIES SUITABILITY
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Technology_Description_TECHNO- DEMO ON FISHERY - AQUACULTURE TECHNOLOGY ADAPTATION
-Agriculture,Fisheries,All Hazards,Adaptive Capacity,Technology_Description_count
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Technology_Score
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Wealth_Description_FINGERLING DISPERSAL
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Wealth_Description_PCIC
-Agriculture,Fisheries,All Hazards,Adaptive Capacity,Wealth_Description_count
 Agriculture,Fisheries,All Hazards,Adaptive Capacity,Wealth_Score
 Agriculture,Fisheries,All Hazards,Exposure,Bangus_Ave Output Per Hectare (Mt) Fish Culture
 Agriculture,Fisheries,All Hazards,Exposure,Bangus_Ave Output Per Hectare (Php)
@@ -167,7 +156,6 @@ Agriculture,Fisheries,All Hazards,Exposure,No Of Fisheries-Dependent Households
 Agriculture,Fisheries,All Hazards,Exposure,No Of Hectares For Aquaculture
 Agriculture,Fisheries,All Hazards,Exposure,No Of Hectares Of Mangrove Areas
 Agriculture,Fisheries,All Hazards,Exposure,No Of Municipal Fisherfolk
-Agriculture,Fisheries,All Hazards,Exposure,Number Of Hazards That May Affect The Element
 Agriculture,Fisheries,All Hazards,Exposure,Tilapia_Ave Output Per Hectare (Mt) Fish Culture
 Agriculture,Fisheries,All Hazards,Exposure,Tilapia_Ave Output Per Hectare (Php)
 Agriculture,Fisheries,All Hazards,Sensitivity,Percentage Of Fishermen Without Access To Hazard Information
@@ -227,7 +215,6 @@ Agriculture,Livestock,All Hazards,Adaptive Capacity,Information_Description_SIGN
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Information_Description_SOCIAL MEDIA
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Information_Description_TEXT MESSAGE
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Information_Description_TV
-Agriculture,Livestock,All Hazards,Adaptive Capacity,Information_Description_count
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Information_Score
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Infrastructure_Description_CORN MILL
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Infrastructure_Description_CORN SHELLER
@@ -240,31 +227,26 @@ Agriculture,Livestock,All Hazards,Adaptive Capacity,Infrastructure_Description_M
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Infrastructure_Description_MPDP
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Infrastructure_Description_REAPER
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Infrastructure_Description_RICE MILL
-Agriculture,Livestock,All Hazards,Adaptive Capacity,Infrastructure_Description_count
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Infrastructure_Score
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Institutional(slash)Government Investments_Description_CONTINGENCY PLAN
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Institutional(slash)Government Investments_Description_DRRMP
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Institutional(slash)Government Investments_Description_FORCED EVACUATION ORDINANCE
-Agriculture,Livestock,All Hazards,Adaptive Capacity,Institutional(slash)Government Investments_Description_count
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Institutional(slash)Government Investments_Score
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Social_Description_AGRICULTURAL TECHNOLOGIST
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Social_Description_FA
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Social_Description_IA
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Social_Description_LFT
-Agriculture,Livestock,All Hazards,Adaptive Capacity,Social_Description_count
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Social_Score
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Technology_Description_IEC
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Technology_Description_IEC ON CLIMATE SMART AGRICULTURE
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Technology_Description_ORGANIC AGRICULTURE TECHNOLOGY
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Technology_Description_RESEARCH STUDY ON FLOOD RESILIENT VARIETY
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Technology_Description_RESEARCH STUDY ON SALINITY RESILIENT VARIETY
-Agriculture,Livestock,All Hazards,Adaptive Capacity,Technology_Description_count
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Technology_Score
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Wealth_Description_PCIC
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Wealth_Description_REHAB SEEDS FROM DEPARTMENT OF AGRICULTURE
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Wealth_Description_SURE AID LOAN
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Wealth_Description_SURE LOAN
-Agriculture,Livestock,All Hazards,Adaptive Capacity,Wealth_Description_count
 Agriculture,Livestock,All Hazards,Adaptive Capacity,Wealth_Score
 Agriculture,Livestock,All Hazards,Exposure,Ave Output Per Head (Php)
 Agriculture,Livestock,All Hazards,Exposure,Dominant Livestock_BOAR
@@ -280,9 +262,7 @@ Agriculture,Livestock,All Hazards,Exposure,Dominant Livestock_HOG
 Agriculture,Livestock,All Hazards,Exposure,Dominant Livestock_LAYER
 Agriculture,Livestock,All Hazards,Exposure,Dominant Livestock_PIGLET
 Agriculture,Livestock,All Hazards,Exposure,Dominant Livestock_SOW
-Agriculture,Livestock,All Hazards,Exposure,Dominant Livestock_count
 Agriculture,Livestock,All Hazards,Exposure,No Of Livestock Farming Dependent Households
-Agriculture,Livestock,All Hazards,Exposure,Number Of Hazards That May Affect The Element
 Agriculture,Livestock,All Hazards,Exposure,Total Area Allocation (Hectares)
 Agriculture,Livestock,All Hazards,Sensitivity,Percentage Of Areas With Infrastructure Coverage
 Agriculture,Livestock,All Hazards,Sensitivity,Percentage Of Areas With Infrastructure Coverage_Score

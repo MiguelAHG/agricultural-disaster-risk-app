@@ -175,16 +175,6 @@ if __name__ == "__main__":
             )
 
             data[sheet] = data[sheet].append(hazard_row)
-
-        # Add a column in general_df that counts the number of hazards that may affect the relevant element in each barangay.
-        general_df["Exposure/Number Of Hazards That May Affect The Element"] = (
-            pd.concat(
-                [data[sheet][["Exposure/This Hazard May Affect The Element"]] for sheet in main_sheets],
-                axis = 1,
-            )
-            .eq("Yes")
-            .sum(axis = 1)
-        )
             
         # Identify columns in general_df containing lists
         list_cols = (
@@ -224,10 +214,6 @@ if __name__ == "__main__":
 
             # Make the dict a DataFrame.
             new_df = pd.DataFrame(new_dct)
-
-            # Add a column that counts the Yes values for each barangay.
-            count_name = "{}_count".format(orig_name)
-            new_df[count_name] = new_df.eq("Yes").sum(axis = 1)
             
             # Save new columns as a CSV for manual checking.
             # This is commented since it is no longer needed.
