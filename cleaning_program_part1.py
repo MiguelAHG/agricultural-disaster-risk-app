@@ -162,9 +162,6 @@ if __name__ == "__main__":
         for sheet in main_sheets:
             data[sheet] = data[sheet].loc[:, unique_list]
 
-            # Add a column that indicates that each barangay may be affected by the element-hazard combination.
-            data[sheet]["Exposure/This Hazard May Affect The Element"] = "Yes"
-
             # Append the row below for MultiIndex purposes later on
             hazard_row = pd.Series(
                 {label: sheet for label in data[sheet].columns},
@@ -300,14 +297,6 @@ if __name__ == "__main__":
             .sort_index(axis = 0) # Sort the MultiIndex rows and columns.
             .sort_index(axis = 1)
         )
-
-        # In combined_df, replace nulls with "No" values in the "This Hazard May Affect The Element" columns.
-        may_affect_cols = combined_df.columns[
-            combined_df.columns.get_level_values("Detail") == "Exposure/This Hazard May Affect The Element"
-        ]
-        
-        for col in may_affect_cols:
-            combined_df[col] = combined_df[col].replace(np.nan, "No")
 
         # Put the combined DataFrame into the cleaned_datasets dict.
         key = group["file_name"]
