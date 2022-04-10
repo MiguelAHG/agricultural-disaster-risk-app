@@ -7,7 +7,6 @@ Main script for the app.
 import pandas as pd
 import geopandas as gpd
 import streamlit as st
-import altair as alt
 
 # Import from local scripts
 from app_graphing import graphing_feature
@@ -19,13 +18,6 @@ from app_select_variable import selection_help_page
 # Cache the function that gets the data.
 @st.cache(suppress_st_warning = True, allow_output_mutation = True)
 def get_data():
-    
-    topojson_url = "https://raw.githubusercontent.com/MiguelAHG/agricultural-disaster-risk-app/main/geodata/barangay_topojson.json"
-
-    topo_data = alt.topo_feature(
-        url = topojson_url,
-        feature = "barangay_geodata",
-    )
 
     db = pd.read_excel(
         "./cleaning_outputs/divided_database.xlsx",
@@ -127,7 +119,7 @@ def get_data():
 
     gdf = gpd.read_file("./geodata/gadm_butuan_city_barangays.gpkg")
 
-    return mi_df, flat_df, topo_data, db, gdf
+    return mi_df, flat_df, db, gdf
 
 if __name__ == "__main__":
 
@@ -141,7 +133,7 @@ if __name__ == "__main__":
     st.caption("Agricultural Disaster Risk App for Butuan City")
 
     # Get the data.
-    mi_df, flat_df, topo_data, db, gdf = get_data()
+    mi_df, flat_df, db, gdf = get_data()
 
     # Sidebar to choose which feature of the app to use.
     with st.sidebar:
@@ -160,7 +152,7 @@ if __name__ == "__main__":
     if feature == "Home Page":
         home_feature()
     elif feature == "Map of Butuan City":
-        map_feature(mi_df, flat_df, topo_data, gdf)
+        map_feature(mi_df, flat_df, gdf)
     elif feature == "Barangay Data Summaries":
         barangay_summary_feature(mi_df, flat_df, db)
     elif feature == "Graphing Tool":

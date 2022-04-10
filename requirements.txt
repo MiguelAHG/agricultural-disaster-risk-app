@@ -7,3 +7,4 @@ pip==21.0.1
 pytopojson==1.1.1
 seaborn==0.11.2
 streamlit==0.88.0
+plotly==5.4.0
