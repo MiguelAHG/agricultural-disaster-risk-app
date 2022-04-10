@@ -12,12 +12,13 @@ from io import BytesIO
 def make_hierarchical(flat_df, mi_df):
     """Recreate the original hierarchical DataFrame."""
 
-    orig_df = flat_df.copy().set_index("Index/Barangay")
+    orig_df = flat_df.copy().set_index("(Barangay)")
+    mi_df = mi_df.drop(0, axis = 0)
     orig_df.columns = pd.MultiIndex.from_frame(mi_df)
 
     return orig_df
 
-def barangay_summary_feature(mi_df, flat_df):
+def barangay_summary_feature(mi_df, flat_df, db):
     """Barangay Data Summary feature."""
 
     # Make a hierarchically labeled DataFrame again.
@@ -57,31 +58,10 @@ def barangay_summary_feature(mi_df, flat_df):
     #---
     # Identify the element-hazard combinations of the barangay.
 
-    # This df contains the "This Hazard May Affect The Element" columns.
-    # These columns were added during cleaning.
-    may_affect = (
-        orig_df
-        .loc[
-            barangay,
-            orig_df.columns.get_level_values("Detail") == "This Hazard May Affect The Element"
-        ]
-        .dropna() # A null value in these columns means that the element does not exist in records for this barangay.
-    )
-    may_affect = may_affect.loc[may_affect == "Yes"]
+    # DataFrame of element and hazard combinations
+    eh_combos = db["library"][["Element", "Hazard"]].drop_duplicates()
 
-    # These are Series containing the hazards and elements at risk in the barangay.
-    hazards = pd.Series(
-        may_affect.index.get_level_values("Hazard")
-    )
-    elements = pd.Series(
-        may_affect.index.get_level_values("Element"),
-    )
-
-    # df of element-hazard combinations
-    eh_combos = pd.concat(
-        [elements, hazards],
-        axis = 1,
-    )
+    eh_combos = eh_combos.loc[eh_combos["Hazard"] != "All Hazards"]
 
     # This function gets the risk category of a given e-h combination.
     get_category = lambda series, cat_name: orig_df.at[
@@ -106,6 +86,13 @@ def barangay_summary_feature(mi_df, flat_df):
         axis = 1,
         cat_name = "Risk Category",
     )
+
+    eh_combos = eh_combos.dropna(subset = ["Vulnerability Category", "Risk Category"])
+
+    # Create separate Series of elements and hazards.
+    # This is done after dropping rows with nulls in Vulnerability Category and Risk Category.
+    elements = eh_combos["Element"].copy()
+    hazards = eh_combos["Hazard"].copy()
 
     # This df is the version displayed on screen.
     # Duplicate elements are not shown so it looks hierarchical.
@@ -289,25 +276,32 @@ def barangay_summary_feature(mi_df, flat_df):
     key_score_cols = orig_df.loc[:, score_cols]
     key_score_cols.columns = key_score_cols.columns.get_level_values("Detail")
 
+    # Get percentile of selected barangay with respect to other barangays
+
     def get_brgy_percentile(col, barangay):
         """Take a Series of scores and a barangay name, which is part of the Series index.
     Return the percentile of the barangay's score as a string."""
         col = col.dropna()
+        num_brgys = len(col)
+
         barangay_value = col[barangay]
-        percentile = sum(col <= barangay_value) / len(col) * 100
+        percentile = sum(col <= barangay_value) / num_brgys * 100
         percentile = str(round(percentile, 2))
 
-        return percentile
+        return percentile, num_brgys
 
-    # Series of percentiles
-    key_score_percentiles = key_score_cols.apply(
-        get_brgy_percentile,
-        barangay = barangay,
-        axis = 0,
-    )
+    percentile_rows = []
+    for col_name in key_score_cols.columns:
+        col = key_score_cols[col_name].copy()
+        percentile, num_brgys = get_brgy_percentile(col, barangay)
+        new_percentile_row = pd.Series(
+            {"Percentile": percentile, "Number of Barangays": num_brgys},
+            name = col_name
+        )
+        percentile_rows.append(new_percentile_row)
 
-    key_score_percentiles.name = "Percentile"
-    key_score_percentiles.index = key_score_percentiles.index.get_level_values("Detail")
+    key_score_percentiles = pd.DataFrame(percentile_rows)
+
 
     # df combining scores and percentiles
     key_score_df = pd.concat(
@@ -332,8 +326,8 @@ def barangay_summary_feature(mi_df, flat_df):
     for score_name in all_score_labels:
         if score_name not in key_score_df.index.tolist():
             new_row = pd.Series(
-                [["Unknown", "Unknown"]],
-                index = ["Score", "Percentile"],
+                [["Unknown", "Unknown", "Unknown"]],
+                index = ["Score", "Percentile", "Number of Barangays"],
                 name = score_name,
             )
             key_score_df = key_score_df.append(new_row)
@@ -353,7 +347,7 @@ def barangay_summary_feature(mi_df, flat_df):
 - Vulnerability Score = Degree of Impact Score / Adaptive Capacity Score
 - Risk Score = Severity of Consequence Score x Likelihood of Occurrence
 
-For each score, a percentile is given in comparison to other barangays (where applicable). A percentile near 100 means that  the score is relatively high.""")
+For each score, a percentile is given in comparison to other barangays (where applicable). A percentile near 100 means that  the score is relatively high. The 'Number of Barangays' column is provided to let you know how many barangays were involved in the calculations for percentiles.""")
 
 
     # Histogram feature

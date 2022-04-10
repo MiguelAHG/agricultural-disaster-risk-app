@@ -5,7 +5,7 @@ from PIL import Image
 
 from app_select_variable import selection_help_box, selection_feature
 
-def map_feature(mi_df, flat_df, topo_data):
+def map_feature(mi_df, flat_df, topo_data, gdf):
     """Map of Butuan City feature."""
 
     st.title("Interactive Map")
