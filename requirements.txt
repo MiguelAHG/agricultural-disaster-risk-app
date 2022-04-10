@@ -8,3 +8,4 @@ pytopojson==1.1.1
 seaborn==0.11.2
 streamlit==0.88.0
 plotly==5.4.0
+openpyxl==3.0.7
