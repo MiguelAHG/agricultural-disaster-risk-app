@@ -10,7 +10,7 @@ def map_feature(mi_df, flat_df, gdf):
     """Map of Butuan City feature."""
 
     st.title("Interactive Map")
-    st.markdown("""This feature provides an interactive map of Butuan City and its barangays. Use the sidebar on the left to select a variable. This will be used color the barangays.""")
+    st.markdown("""This feature provides an interactive map of Butuan City and its barangays. Use the sidebar on the left to select a variable. This will be used to color-code the barangays.""")
 
     # In the sidebar, let the user select
     with st.sidebar:
