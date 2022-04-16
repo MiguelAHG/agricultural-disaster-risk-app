@@ -15,9 +15,9 @@ https://share.streamlit.io/miguelahg/agricultural-disaster-risk-app/main/app_mai
 
 ## Documentation
 
-For more detailed documentation on the app, visit the following Google Docs file:
+For more detailed documentation on the app, visit the following Google Docs link:
 
-[Agricultural Disaster Risk Web App - Datos Puti Team](https://docs.google.com/document/d/1feKAvHEzJG2PmKtZrXvsGHOJL4c-kaTc4b_W_fHP-68/edit?usp=sharing)
+[agriHanda - Agricultural Disaster Risk Web App](https://docs.google.com/document/d/e/2PACX-1vSGwaN4kZBjq2OMpkQbZPbE2GUdN6fKcGs-8ctL69KQy2CcT6hINcx91RHKince0DJPDs11_HkzLpiT/pub)
 
 This document covers the following topics:
 
