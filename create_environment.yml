@@ -13,6 +13,8 @@ dependencies:
   - python=3.8.11
   - seaborn=0.11.2
   - plotly=5.4.0
+  - click=7.1.2
   - pip:
     - pytopojson==1.1.1
     - streamlit==0.88.0
+    - protobuf==3.17.3
