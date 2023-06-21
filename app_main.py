@@ -87,7 +87,7 @@ def get_data():
                 new_mi_row = bid_row
             else:
                 new_mi_row = {}
-                for i, item in first_four.iteritems():
+                for i, item in first_four.items():
                     new_mi_row[i] = item
                 new_mi_row["Detail"] = col
             mi_rows.append(new_mi_row)
