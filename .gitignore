@@ -3,3 +3,4 @@
 /requirements/
 /private/
 *.bat
+.gitignore
