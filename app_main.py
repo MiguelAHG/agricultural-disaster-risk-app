@@ -16,7 +16,7 @@ from app_home import home_feature
 from app_select_variable import selection_help_page
 
 # Cache the function that gets the data.
-@st.cache(suppress_st_warning = True, allow_output_mutation = True)
+@st.cache_data(ttl = None)
 def get_data():
 
     db = pd.read_excel(
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     with st.sidebar:
         st.markdown("# App Features")
         feature = st.radio(
-            "",
+            "App Features",
             [
                 "Home Page",
                 "Map of Butuan City",
@@ -147,6 +147,7 @@ if __name__ == "__main__":
                 "Graphing Tool",
                 "Help: Variable Selection"
             ],
+            label_visibility = "hidden"
         )
 
     if feature == "Home Page":

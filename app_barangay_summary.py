@@ -8,7 +8,7 @@ import seaborn as sns
 from matplotlib.backends.backend_agg import RendererAgg
 from io import BytesIO
 
-@st.cache(suppress_st_warning = True, allow_output_mutation = True)
+@st.cache_data(ttl = None)
 def make_hierarchical(flat_df, mi_df):
     """Recreate the original hierarchical DataFrame."""
 
